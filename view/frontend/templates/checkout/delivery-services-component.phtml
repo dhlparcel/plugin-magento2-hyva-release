@@ -1,0 +1,60 @@
+<?php
+/**
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \DHLParcel\ShippingHyva\Magewire\Checkout\DeliveryServices $magewire
+ */
+
+$enabled = $magewire->enabled;
+$visible = $magewire->visible;
+$validated = $magewire->validated;
+$serviceData = $magewire->serviceData;
+$showServices = $enabled && $visible && !empty($serviceData);
+?>
+<div wire:id="<?= $escaper->escapeHtmlAttr($magewire->getId()) ?>"
+     id="dhlparcel-shipping-deliveryoptions-info"
+     class="dhlparcel-delivery-services-component"
+     data-dhl-deliveryservices
+     data-enabled="<?= $enabled ? 'true' : 'false' ?>"
+     data-validated="<?= $validated ? 'true' : 'false' ?>"
+    <?= $showServices ? '' : 'hidden' ?>
+>
+    <div id="dhlparcel-shipping-deliveryservices-info">
+        <p>
+            <span><?= $escaper->escapeHtml(__('Extra services')) ?></span>
+        </p>
+        <div id="dhlparcel-shipping-delivery-service-options">
+            <?php foreach ($serviceData as $service): ?>
+                <?php
+                $value = isset($service['value']) ? (string)$service['value'] : '';
+                $isEnabled = isset($service['enable']) ? (bool)$service['enable'] : true;
+                ?>
+                <div class="dhlparcel-shipping-delivery-service-option<?= $isEnabled ? '' : ' dhlparcel-shipping-delivery-service-option-disable' ?>"
+                     wire:key="deliveryservice-<?= $escaper->escapeHtmlAttr($value) ?>">
+                    <input type="checkbox"
+                           name="shipping-method-option"
+                           value="<?= $escaper->escapeHtmlAttr($value) ?>"
+                           wire:model="selectedServices"
+                        <?= $isEnabled ? '' : 'disabled' ?>
+                    />
+                    <div class="dhlparcel-shipping-delivery-service-option-price">
+                        <?= $escaper->escapeHtml($service['price'] ?? '') ?>
+                    </div>
+                    <div class="dhlparcel-shipping-delivery-service-option-icon">
+                        <img alt="icon" src="<?= $escaper->escapeUrl($service['image'] ?? '') ?>"/>
+                    </div>
+                    <div class="dhlparcel-shipping-delivery-service-option-title">
+                        <?= $escaper->escapeHtml($service['title'] ?? '') ?>
+                    </div>
+                    <span class="dhlparcel-shipping-delivery-service-option-description">
+                        <?= $escaper->escapeHtml($service['description'] ?? '') ?>
+                    </span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div id="dhlparcel-shipping-deliveryservices-info-error"
+             class="text-red-600 text-sm mt-2"
+             style="display:none">
+            <?= $escaper->escapeHtml(__('Please select at least one delivery service.')) ?>
+        </div>
+    </div>
+</div>

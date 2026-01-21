@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \DHLParcel\ShippingHyva\Magewire\Checkout\DeliveryTimes $magewire
+ */
+
+$enabled = $magewire->enabled;
+$visible = $magewire->visible;
+$options = $magewire->options;
+$showTimes = $enabled && $visible && !empty($options);
+?>
+<div wire:id="<?= $escaper->escapeHtmlAttr($magewire->getId()) ?>"
+     class="dhlparcel-delivery-times-component"
+     data-dhl-deliverytimes
+     data-error-id="dhlparcel-shipping-deliverytimes-info-error"
+    <?= $showTimes ? '' : 'hidden' ?>
+>
+    <div class="dhlparcel-delivery-times">
+        <select id="dhlparcel-delivery-times" wire:model="selectedIdentifier">
+            <?php foreach ($options as $option): ?>
+                <option value="<?= $escaper->escapeHtmlAttr($option['identifier']) ?>">
+                    <?= $escaper->escapeHtml($option['label']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div id="dhlparcel-shipping-deliverytimes-info-error" style="display:none"
+         class="text-red-600 text-sm mt-2">
+        <?= $escaper->escapeHtml(__('Please select a delivery time.')) ?>
+    </div>
+</div>

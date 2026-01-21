@@ -1,0 +1,122 @@
+/* Delivery options styling (ported from Luma) */
+#dhlparcel-shipping-deliveryoptions-info {
+    margin-top: 2rem;
+}
+
+#dhlparcel-shipping-deliveryoptions-info p {
+    margin-top: 2rem;
+}
+
+#dhlparcel-shipping-deliverytimes-info-error,
+#dhlparcel-shipping-deliveryservices-info-error {
+    color: #e02b27;
+    font-size: 1.2rem;
+}
+
+input[type='radio'][name='shipping-method-option'],
+input[type='checkbox'][name='shipping-method-option'] {
+    margin-right: 0.5rem;
+}
+
+
+/* Fix "Saving shipping method" Magwire message popup incorrect styling */
+.magewire\.notification\.message.relative.sync-input .w-0 {
+    width: 100%;
+}
+.magewire\.notification\.message [x-show="message.loading"],
+.magewire\.notification\.message [x-show="isSuccessMessage"],
+.magewire\.notification\.message [x-show="isNotSuccessMessage"] {
+    display: none;
+}
+/* End fix */
+
+/* Hide Magwire message obtrusive overlay */
+.magewire-loader-overlay {
+    display: none !important;
+}
+
+/* Service */
+#dhlparcel-shipping-delivery-service-options {
+    position: relative;
+}
+
+.dhlparcel-shipping-delivery-service-option {
+    margin-bottom: 0.5rem;
+}
+
+.dhlparcel-shipping-delivery-service-option-price {
+    background-color: lightgrey;
+    padding: 0.5rem 2rem;
+    border-radius: 0.8rem;
+    font-weight: bold;
+    min-width: 5em;
+    display: inline-block;
+    text-align: right;
+}
+
+.dhlparcel-shipping-delivery-service-option-icon {
+    padding: 0.5rem 0 0.5rem 1.6rem;
+    border-bottom-right-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    font-weight: bold;
+    min-width: 2em;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    color: black;
+    margin-left: -1rem;
+    vertical-align: top;
+}
+
+.dhlparcel-shipping-delivery-service-option-icon:after {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    border-radius: 0.6rem;
+    width: 2rem;
+    height: 100%;
+    box-shadow: 0 0 0 20rem #fd0;
+    z-index: -1;
+}
+
+.dhlparcel-shipping-delivery-service-option-icon img {
+    height: 2rem;
+    width: 2rem;
+    margin: auto;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    pointer-events: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.dhlparcel-shipping-delivery-service-option-title {
+    display: inline-block;
+    min-width: 15rem;
+    font-weight: bold;
+    padding: 0 0.5rem;
+}
+
+.dhlparcel-shipping-delivery-service-option-description {
+    display: inline-block;
+}
+
+.dhlparcel-shipping-delivery-service-option.dhlparcel-shipping-delivery-service-option-disable {
+    opacity: 0.4;
+    filter: grayscale(80%);
+}
+
+.dhlparcel-delivery-times {
+    margin-top: 1.5rem;
+}
+
+.bg-primary.active span,
+.bg-primary.active .text-gray-700,
+.bg-primary.active .text-gray-800,
+.bg-primary.active .text-gray-900,
+.bg-primary.active .product-price {
+    color: #ffffff !important;
+}

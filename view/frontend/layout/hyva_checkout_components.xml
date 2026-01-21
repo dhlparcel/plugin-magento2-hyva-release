@@ -1,0 +1,39 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+>
+    <head>
+        <script src="DHLParcel_ShippingHyva::js/shared.js" />
+        <script src="DHLParcel_ShippingHyva::js/servicepoint-locator-component.js" defer="defer"/>
+        <script src="DHLParcel_ShippingHyva::js/servicepoint.js" defer="defer"/>
+        <script src="DHLParcel_ShippingHyva::js/checkout-validation.js" defer="defer"/>
+        <css src="https://static.dhlecommerce.nl/fonts/Delivery.css" src_type="url"/>
+        <css src="DHLParcel_ShippingHyva::css/deliveryoptions.css"/>
+        <css src="DHLParcel_ShippingHyva::css/servicepoint.css"/>
+    </head>
+    <body>
+        <referenceBlock name="hyva.checkout.components">
+            <referenceBlock name="checkout.shipping.section">
+                <referenceBlock name="checkout.shipping.methods.after">
+                    <block name="dhl-ecommerce-servicepoint-component"
+                           template="DHLParcel_ShippingHyva::checkout/servicepoint-component.phtml"
+                           after="-"
+                    />
+                    <block name="dhl-ecommerce-delivery-times-component"
+                           template="DHLParcel_ShippingHyva::checkout/delivery-times-component.phtml"
+                           after="-">
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">DHLParcel\ShippingHyva\Magewire\Checkout\DeliveryTimes</argument>
+                        </arguments>
+                    </block>
+                    <block name="dhl-ecommerce-delivery-services-component"
+                           template="DHLParcel_ShippingHyva::checkout/delivery-services-component.phtml"
+                           after="dhl-ecommerce-delivery-times-component">
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">DHLParcel\ShippingHyva\Magewire\Checkout\DeliveryServices</argument>
+                        </arguments>
+                    </block>
+                </referenceBlock>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>

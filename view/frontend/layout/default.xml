@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+  Local dev helper: relax cookie domain for form_key on localhost-style hosts.
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="DHLParcel_ShippingHyva::js/cookie-domain-local-fix.js"/>
+    </head>
+    <body/>
+</page>

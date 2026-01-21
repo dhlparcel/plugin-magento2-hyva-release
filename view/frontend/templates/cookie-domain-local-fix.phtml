@@ -1,0 +1,38 @@
+<?php
+/**
+ * Local dev helper: avoid Domain attribute on cookies for localhost-like hosts.
+ *
+ * Some browsers drop cookies if Domain is set to a bare/internal hostname (e.g. ".localhost" or ".magento.local.test"),
+ * which prevents the form_key cookie from being stored. This script clears the domain in the Hyvä cookie config when
+ * we detect a local hostname, so cookies become host-only and are accepted.
+ */
+?>
+<script>
+    (function () {
+        var apply = function () {
+            if (typeof window.COOKIE_CONFIG === 'object') {
+                // Force host-only cookie to avoid browsers rejecting Domain on local hosts.
+                window.COOKIE_CONFIG.domain = null;
+            }
+        };
+        apply();
+        if (typeof window.COOKIE_CONFIG !== 'object') {
+            document.addEventListener('DOMContentLoaded', apply, { once: true });
+        }
+
+        // Also set the form_key cookie to the server-provided hidden input value (host-only).
+        var setFormKeyFromDom = function () {
+            var input = document.querySelector('input[name="form_key"]');
+            if (!input || !input.value) {
+                return;
+            }
+            // Host-only cookie, session lifetime.
+            document.cookie = 'form_key=' + encodeURIComponent(input.value) + '; path=/; samesite=lax';
+        };
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setFormKeyFromDom();
+        } else {
+            document.addEventListener('DOMContentLoaded', setFormKeyFromDom, { once: true });
+        }
+    })();
+</script>

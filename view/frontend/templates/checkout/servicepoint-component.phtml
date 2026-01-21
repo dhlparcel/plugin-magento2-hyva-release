@@ -1,0 +1,20 @@
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+<div class="dhlpwc_servicepoint_modal"
+     data-dhl-servicepoint
+     data-base-url="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
+     data-form-key="<?= $escaper->escapeHtmlAttr($block->getFormKey()) ?>">
+    <button type="button" class="btn mt-4" aria-haspopup="dialog" data-role="servicepoint-open">
+        <?= $escaper->escapeHtml(__('Select a different DHL point')) ?>
+    </button>
+    <div id="dhlparcel-shipping-servicepoint-info-error"
+         class="text-red-600 text-sm mt-2"
+         style="display:none">
+        <?= $escaper->escapeHtml(__('Please select a DHL ServicePoint.')) ?>
+    </div>
+
+    <div class="dhlpwc_servicepoint_overlay" data-role="servicepoint-overlay" hidden>
+        <div class="dhlpwc_servicepoint_dialog" role="dialog" aria-labelledby="dhl-servicepoint-locator-component">
+            <div id="dhlparcel-shipping-modal"></div>
+        </div>
+    </div>
+</div>
