@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: plugin-magento2-hyva-release
+  title: Plugin Magento 2 Hyva Release
+  annotations:
+    github.com/project-slug: dhlparcel/plugin-magento2-hyva-release
+spec:
+  type: library
+  lifecycle: production
+  owner: shipper
+  system: connector
